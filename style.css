@@ -1,0 +1,239 @@
+/* Slim custom scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #bbb;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+}
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-align: center;
+  padding: 20px;
+  padding-right: 60px;
+  background: #f9f9f9;
+  color: #333;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+}
+
+h1 {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+#grid {
+  display: grid;
+  margin: 30px auto;
+  width: 600px;
+  height: 600px;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  flex-shrink: 0;
+}
+
+.grid-square {
+  box-sizing: border-box;
+  border: 1px solid #eee;
+  background-color: transparent;
+  transition: background-color 0.2s;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+button, input[type="color"], input[type="range"] {
+  padding: 10px;
+  font-weight: 500;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #fff;
+  color: #333;
+  cursor: pointer;
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+button:hover, input[type="color"]:hover, input[type="range"]:hover {
+  background-color: #f0f0f0;
+  border-color: #999;
+}
+
+input[type="color"] {
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+}
+
+
+input[type="range"] {
+  width: 200px;
+  height: 36px;
+  background: transparent;
+  border: none;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Webkit browsers */
+input[type="range"]::-webkit-slider-runnable-track {
+  height: 2px;
+  background: #ccc;
+  border-radius: 1px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  margin-top: -9px;
+  background: #333;
+  border-radius: 50%;
+  border: 2px solid white;
+  cursor: pointer;
+}
+
+/* Firefox */
+input[type="range"]::-moz-range-track {
+  height: 2px;
+  background: #ccc;
+  border-radius: 1px;
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: #333;
+  border-radius: 50%;
+  border: 2px solid white;
+  cursor: pointer;
+}
+
+input[type="range"]::-moz-focus-outer {
+  border: 0;
+}
+
+@media (max-width: 768px) {
+  #grid {
+    width: 90vw;
+    height: 90vw;
+  }
+
+  .controls {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  input[type="range"] {
+    width: 80vw;
+  }
+
+  input[type="color"] {
+    width: 40px;
+    height: 40px;
+  }
+
+  button {
+    width: 80vw;
+    max-width: 300px;
+  }
+}
+
+/* Theme toggle button styles */
+/* Theme toggle button styles */
+.theme-toggle {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 8px 12px;
+  font-size: 1.2rem;
+  border-radius: 4px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+.theme-toggle::before {
+  content: '🌙'; /* default: dark mode icon */
+}
+
+body.dark-mode .theme-toggle::before {
+  content: '☀️'; /* in dark mode, show sun to toggle to light */
+}
+
+/* Dark mode styles */
+body.dark-mode {
+  background: #1e1e1e;
+  color: #eee;
+}
+
+body.dark-mode h1 {
+  color: #eee;
+}
+
+body.dark-mode #grid {
+  background-color: #2a2a2a;
+  border-color: #555;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+body.dark-mode .grid-square {
+  border-color: #444;
+}
+
+body.dark-mode button,
+body.dark-mode input[type="color"],
+body.dark-mode input[type="range"] {
+  background-color: #333;
+  color: #eee;
+  border-color: #666;
+}
+
+body.dark-mode button:hover,
+body.dark-mode input[type="color"]:hover,
+body.dark-mode input[type="range"]:hover {
+  background-color: #444;
+  border-color: #888;
+}
+
+button.active-mode {
+  background-color: #333;
+  color: #fff;
+  border: 2px solid #222;
+}
+
+body.dark-mode button.active-mode {
+  background-color: #fff;
+  color: #111;
+  border: 2px solid #ddd;
+}
